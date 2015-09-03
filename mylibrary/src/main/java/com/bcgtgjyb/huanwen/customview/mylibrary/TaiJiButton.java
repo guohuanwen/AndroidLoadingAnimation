@@ -11,7 +11,6 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
-
 import com.nineoldandroids.animation.ValueAnimator;
 
 /**
@@ -51,6 +50,9 @@ public class TaiJiButton extends View {
         backRectF=new RectF();
     }
 
+    /**
+     * set the animation start
+     */
     public void startLoad(){
         stopAnimator=false;
         setLineToArcAnimator();
@@ -58,16 +60,28 @@ public class TaiJiButton extends View {
         loading();
     }
 
+    /**
+     * set the animation stop
+     */
     public void stopLoad(){
         this.stopAnimator=true;
         setArcToLineAnimator();
         setDisAppearAnimator();
     }
 
+    /**
+     * set the velocity of animation
+     * @param velocity
+     */
     public void setVelocity(int velocity){
         this.velocity=velocity;
     }
 
+    /**
+     * set the view's color
+     * @param color1
+     * @param color2
+     */
     public void setColor(int color1,int color2){
         this.color1=color1;
         this.color2=color2;
