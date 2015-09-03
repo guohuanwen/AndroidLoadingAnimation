@@ -1,6 +1,5 @@
 package com.bcgtgjyb.huanwen.customview.mylibrary;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -11,13 +10,14 @@ import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.Animation;
-import android.widget.Button;
+import android.view.animation.LinearInterpolator;
+
+import com.nineoldandroids.animation.ValueAnimator;
 
 /**
  * Created by huanwen on 2015/9/1.
  */
-public class TaiJiButton extends View implements View.OnClickListener{
+public class TaiJiButton extends View {
     private final String TAG="TaiJiButton";
     private float rolate=360;
     private Paint mWhitePaint;
@@ -32,8 +32,13 @@ public class TaiJiButton extends View implements View.OnClickListener{
     private ValueAnimator arcToLineAnimator;
     private boolean init=false;
     private float ratio=0;
-    private float rotate=0;
     private boolean stopAnimator = false;
+    private float raduis=0;
+    private int velocity=1000;
+    private int color1=Color.BLACK;
+    private int color2=Color.GRAY;
+    RectF rectF = new RectF();
+    RectF rectF2 = new RectF();
 
 
     public TaiJiButton(Context context,AttributeSet attributeSet){
@@ -44,7 +49,28 @@ public class TaiJiButton extends View implements View.OnClickListener{
         arcPaint=new Paint(Paint.ANTI_ALIAS_FLAG);
         mRect=new Rect();
         backRectF=new RectF();
-        setOnClickListener(this);
+    }
+
+    public void startLoad(){
+        stopAnimator=false;
+        setLineToArcAnimator();
+        setAppearAnimator();
+        loading();
+    }
+
+    public void stopLoad(){
+        this.stopAnimator=true;
+        setArcToLineAnimator();
+        setDisAppearAnimator();
+    }
+
+    public void setVelocity(int velocity){
+        this.velocity=velocity;
+    }
+
+    public void setColor(int color1,int color2){
+        this.color1=color1;
+        this.color2=color2;
     }
 
     @Override
@@ -55,17 +81,13 @@ public class TaiJiButton extends View implements View.OnClickListener{
             canvas.rotate(rolate*ratio,getWidth()/2,getHeight()/2);
             invalidate();
         }
-        float R=50;
-        mWhitePaint.setColor(Color.GRAY);
-        mBlackPaint.setColor(Color.BLACK);
-        backgroundPaint.setColor(Color.GRAY);
-        arcPaint.setColor(Color.RED);
-
+        float R=getWidth()/2-5;
+        mWhitePaint.setColor(color2);
+        mBlackPaint.setColor(color1);
         backRectF.set(getWidth() / 2 - R, getHeight() / 2 - R, getWidth() / 2 + R, getHeight() / 2 + R);
-
-
         mRect.set(getWidth(), getHeight(), 0, 0);
-
+        canvas.drawArc(backRectF, 0, 180, true, mWhitePaint);
+        canvas.drawArc(backRectF, 0, -180, true, mBlackPaint);
         //消除锯齿
 //        backgroundPaint.setAntiAlias(true);
 
@@ -79,11 +101,9 @@ public class TaiJiButton extends View implements View.OnClickListener{
 //        canvas.drawRect(0, 0, getWidth(), getHeight(), backgroundPaint);
 //        canvas.drawCircle(getWidth() / 2, getHeight() / 2, R, backgroundPaint);
 
-        if(!init){
-            canvas.drawArc(backRectF, 0, 180, true, mWhitePaint);
-            canvas.drawArc(backRectF, 0, -180, true, mBlackPaint);
+
 //            init=true;
-        }
+
 //        if(ratio==0.9998989){
 //            RectF rectF = new RectF();
 //            RectF rectF2 = new RectF();
@@ -93,24 +113,19 @@ public class TaiJiButton extends View implements View.OnClickListener{
 //            canvas.drawArc(rectF2, 0, 360, true, mBlackPaint);
 //        }
 
-        {
-            RectF rectF = new RectF();
-            rectF.set(getWidth() / 2 - R,getHeight() / 2+ratio*R/2, getWidth() / 2, getHeight() / 2 -  ratio * R / 2);
-            canvas.drawArc(rectF, 0, 360, true, mWhitePaint);
-            RectF rectF2 = new RectF();
-            rectF2.set(getWidth() / 2, getHeight() / 2 + ratio * R / 2, getWidth() / 2 + R, getHeight() / 2 - ratio * R / 2);
-            canvas.drawArc(rectF2, 0, 360, true, mBlackPaint);
-        }
 
+        rectF.set(getWidth() / 2 - R,getHeight() / 2+ratio*R/2, getWidth() / 2, getHeight() / 2 -  ratio * R / 2);
+        canvas.drawArc(rectF, 0, 180, true, mWhitePaint);
+
+        rectF2.set(getWidth() / 2, getHeight() / 2 + ratio * R / 2, getWidth() / 2 + R, getHeight() / 2 - ratio * R / 2);
+        canvas.drawArc(rectF2, 0, -180, true, mBlackPaint);
         if((lineToArcAnimator!=null&&lineToArcAnimator.isRunning())) {
             ratio = (Float) lineToArcAnimator.getAnimatedValue();
-            Log.i(TAG, "onDraw " + ratio);
             invalidate();
         }
 
         if(arcToLineAnimator!=null&&arcToLineAnimator.isRunning()){
             ratio = (Float) arcToLineAnimator.getAnimatedValue();
-            Log.i(TAG, "onDraw "+ratio);
             invalidate();
         }
 
@@ -123,9 +138,9 @@ public class TaiJiButton extends View implements View.OnClickListener{
 //            canvas.drawArc(backRectF, 0, 180, true, mBlackPaint);
 //        }
 
-        {
+
 //            canvas.rotate(360 * rotate, getWidth() / 2, getHeight() / 2);
-        }
+
 //        if(smallAnimator!=null&&smallAnimator.isRunning()){
 //            rotate = (Float)smallAnimator.getAnimatedValue();
 //            invalidate();
@@ -143,8 +158,14 @@ public class TaiJiButton extends View implements View.OnClickListener{
 
 //        canvas.drawCircle(raduisX1,raduisY1,R/2,mWhitePaint);
 //        canvas.drawCircle(raduisX2,raduisY2,R/2,mBlackPaint);
-//        canvas.drawCircle(raduisX1,raduisY1,R/5,mBlackPaint);
-//        canvas.drawCircle(raduisX2,raduisY2,R/5,mWhitePaint);
+
+        canvas.drawCircle(raduisX1,raduisY1,raduis*R/5,mWhitePaint);
+        canvas.drawCircle(raduisX2,raduisY2,raduis*R/5,mBlackPaint);
+        if(smallAnimator!=null&&smallAnimator.isRunning()){
+            raduis=(float)smallAnimator.getAnimatedValue();
+            invalidate();
+        }
+
 
 
 
@@ -152,26 +173,10 @@ public class TaiJiButton extends View implements View.OnClickListener{
     }
 
 
-    @Override
-    public void onClick(View view) {
-        Log.i(TAG, "onClick ");
-//        startAnimator();
-//        setSmallAnimator();
-        setLineToArcAnimator();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                loading();
-//                setArcToLineAnimator();
-            }
-        }, 1500);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                stopAnimator=true;
-            }
-        },10000);
-    }
+
+
+
+
 
     private void loading(){
         loadAnimator();
@@ -187,7 +192,8 @@ public class TaiJiButton extends View implements View.OnClickListener{
 
     private void loadAnimator() {
         animator = ValueAnimator.ofFloat(0f, 1f);
-        animator.setDuration(1000);
+        animator.setDuration(velocity);
+        animator.setInterpolator(new LinearInterpolator());
         animator.start();
         invalidate();
     }
@@ -195,21 +201,30 @@ public class TaiJiButton extends View implements View.OnClickListener{
     private void setLineToArcAnimator(){
         Log.i(TAG, "setLineToArcAnimator ");
         lineToArcAnimator=ValueAnimator.ofFloat(0f,1f);
-        lineToArcAnimator.setDuration(2000);
+        lineToArcAnimator.setDuration(velocity);
+        lineToArcAnimator.setInterpolator(new LinearInterpolator());
         lineToArcAnimator.start();
         invalidate();
     }
     private void setArcToLineAnimator(){
         Log.i(TAG, "setArcToLineAnimator ");
         arcToLineAnimator=ValueAnimator.ofFloat(1f,0f);
-        arcToLineAnimator.setDuration(2000);
+        arcToLineAnimator.setDuration(velocity);
+        arcToLineAnimator.setInterpolator(new LinearInterpolator());
         arcToLineAnimator.start();
         invalidate();
     }
 
-    private void setSmallAnimator(){
+    private void setAppearAnimator(){
         smallAnimator=ValueAnimator.ofFloat(0f,1f);
-        smallAnimator.setDuration(2000);
+        smallAnimator.setDuration(velocity);
+        smallAnimator.start();
+        invalidate();
+    }
+
+    private void setDisAppearAnimator(){
+        smallAnimator=ValueAnimator.ofFloat(1f,0f);
+        smallAnimator.setDuration(velocity);
         smallAnimator.start();
         invalidate();
     }
