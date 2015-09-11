@@ -1,3 +1,5 @@
+[![Android Gems](http://www.android-gems.com/badge/guohuanwen/TaiJIView.svg?branch=master)](http://www.android-gems.com/lib/guohuanwen/TaiJIView)
+
 # TaiJIView
 
 #Demo
