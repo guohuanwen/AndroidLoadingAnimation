@@ -87,6 +87,7 @@ public class TaiJiButton extends View {
         this.color2=color2;
     }
 
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -100,24 +101,18 @@ public class TaiJiButton extends View {
         mBlackPaint.setColor(color1);
         backRectF.set(getWidth() / 2 - R, getHeight() / 2 - R, getWidth() / 2 + R, getHeight() / 2 + R);
         mRect.set(getWidth(), getHeight(), 0, 0);
+        //画出背景半圆
         canvas.drawArc(backRectF, 0, 180, true, mWhitePaint);
         canvas.drawArc(backRectF, 0, -180, true, mBlackPaint);
         //消除锯齿
 //        backgroundPaint.setAntiAlias(true);
-
         // 画弧，第一个参数是RectF：该类是第二个参数是角度的开始，第三个参数是多少度，第四个参数是真的时候画扇形，是假的时候画弧线
-
-
 //        canvas.drawOval(backRectF,arcPaint);
         //设置图形为空心
 //        backgroundPaint.setStyle(Paint.Style.STROKE);
-
 //        canvas.drawRect(0, 0, getWidth(), getHeight(), backgroundPaint);
 //        canvas.drawCircle(getWidth() / 2, getHeight() / 2, R, backgroundPaint);
-
-
-//            init=true;
-
+//        init=true;
 //        if(ratio==0.9998989){
 //            RectF rectF = new RectF();
 //            RectF rectF2 = new RectF();
@@ -128,11 +123,15 @@ public class TaiJiButton extends View {
 //        }
 
 
-        rectF.set(getWidth() / 2 - R,getHeight() / 2+ratio*R/2, getWidth() / 2, getHeight() / 2 -  ratio * R / 2);
-        canvas.drawArc(rectF, 0, 180, true, mWhitePaint);
 
+
+
+
+        Log.d(TAG, "onDraw() returned: " + ratio);
+        rectF.set(getWidth() / 2 - R,getHeight() / 2+ratio*R/2, getWidth() / 2, getHeight() / 2 -  ratio * R / 2);
+        canvas.drawArc(rectF, 0, 180, false, mWhitePaint);
         rectF2.set(getWidth() / 2, getHeight() / 2 + ratio * R / 2, getWidth() / 2 + R, getHeight() / 2 - ratio * R / 2);
-        canvas.drawArc(rectF2, 0, -180, true, mBlackPaint);
+        canvas.drawArc(rectF2, 0, -180, false, mBlackPaint);
         if((lineToArcAnimator!=null&&lineToArcAnimator.isRunning())) {
             ratio = (Float) lineToArcAnimator.getAnimatedValue();
             invalidate();
@@ -142,6 +141,7 @@ public class TaiJiButton extends View {
             ratio = (Float) arcToLineAnimator.getAnimatedValue();
             invalidate();
         }
+
 
 
 //        if(ratio<=0.5){
@@ -179,10 +179,6 @@ public class TaiJiButton extends View {
             raduis=(float)smallAnimator.getAnimatedValue();
             invalidate();
         }
-
-
-
-
 //
     }
 
