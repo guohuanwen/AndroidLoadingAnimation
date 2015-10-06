@@ -43,10 +43,7 @@ public class PointToLineRotate extends View{
         if(null==startValue){
             loading();
         }
-        angle=(float)endValue.getAnimatedValue();
-        if(angle==0){
-            angle=60;
-        }
+        angle=-(float)endValue.getAnimatedValue();
         startAngle=(float)startValue.getAnimatedValue();
         canvas.drawArc(rectF, startAngle, angle, false, paint);
 
@@ -57,7 +54,7 @@ public class PointToLineRotate extends View{
 
     private void loading(){
         startValue=makeValueAnimator(0,360);
-        endValue=makeEndValueAnimator(60,180,0);
+        endValue=makeEndValueAnimator(30,60,120,90,60,30);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -79,7 +76,6 @@ public class PointToLineRotate extends View{
         ValueAnimator valueAnimator=ValueAnimator.ofFloat(value);
         valueAnimator.setInterpolator(new LinearInterpolator());
         valueAnimator.setDuration(1000);
-        valueAnimator.setStartDelay(200);
         valueAnimator.start();
         return valueAnimator;
     }

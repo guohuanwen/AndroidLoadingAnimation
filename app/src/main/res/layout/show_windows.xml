@@ -22,6 +22,10 @@
             <com.bcgtgjyb.huanwen.customview.mylibrary.PointToLineRotate
                 android:layout_width="100dp"
                 android:layout_height="100dp" />
+            
+            <com.bcgtgjyb.huanwen.customview.mylibrary.FourCirlceRotate
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
