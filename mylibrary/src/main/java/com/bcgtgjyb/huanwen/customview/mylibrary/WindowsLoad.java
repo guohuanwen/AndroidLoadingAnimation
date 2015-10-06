@@ -14,7 +14,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Interpolator;
 
 /**
- * Created by Administrator on 2015/10/5.
+ * Created by guohuanwen on 2015/10/5.
  */
 public class WindowsLoad extends View {
     private float pi = (float) Math.PI;
