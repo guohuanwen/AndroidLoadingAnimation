@@ -2,7 +2,7 @@
 
 # TaiJIView
 
-#Demo
+#Demo(已过时，暂时无法更新最新的demo动画)
 ![](https://github.com/guohuanwen/TaiJIView/blob/master/screenshots/taiji0.gif)  
   
 #Usage  
