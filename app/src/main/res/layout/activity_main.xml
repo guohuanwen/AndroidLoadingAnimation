@@ -4,14 +4,43 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="stop"/>
-    <com.bcgtgjyb.huanwen.customview.mylibrary.TaiJiButton
-        android:id="@+id/taiJiButton"
-        android:layout_centerInParent="true"
-        android:layout_width="100dp"
-        android:layout_height="100dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="stop"/>
+            <com.bcgtgjyb.huanwen.customview.mylibrary.TaiJiButton
+                android:id="@+id/taiJiButton"
+                android:layout_centerInParent="true"
+                android:layout_width="100dp"
+                android:layout_height="100dp"/>
+            </RelativeLayout>
+
+            <com.bcgtgjyb.huanwen.customview.mylibrary.WindowsLoad
+                android:id="@+id/windows_load"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@android:color/holo_green_dark" />
+
+            <com.bcgtgjyb.huanwen.customview.mylibrary.PointToLineRotate
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
+
+            <com.bcgtgjyb.huanwen.customview.mylibrary.FourCirlceRotate
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
