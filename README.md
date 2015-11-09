@@ -3,7 +3,7 @@
 # TaiJIView
 
 #Demo  
-![](https://github.com/guohuanwen/TaiJIView/blob/master/screenshots/taiji1.gif)  
+![](https://github.com/guohuanwen/TaiJIView/blob/master/screenshots/gif4.gif)  
   
 #Usage  
 cope mylibrary to your project  
