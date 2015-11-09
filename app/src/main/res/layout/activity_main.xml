@@ -33,8 +33,7 @@
             <com.bcgtgjyb.huanwen.customview.mylibrary.WindowsLoad
                 android:id="@+id/windows_load"
                 android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@android:color/holo_green_dark" />
+                android:layout_height="100dp" />
 
             <com.bcgtgjyb.huanwen.customview.mylibrary.PointToLineRotate
                 android:layout_width="100dp"
