@@ -3,7 +3,11 @@
 # TaiJIView
 
 #Demo  
+<<<<<<< HEAD
 ![](https://github.com/guohuanwen/TaiJIView/blob/master/screenshots/gif4.gif)  
+=======
+![](https://github.com/guohuanwen/TaiJIView/blob/master/screenshots/gif3.gif)  
+>>>>>>> origin/master
   
 #Usage  
 cope mylibrary to your project  
