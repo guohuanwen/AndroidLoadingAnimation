@@ -49,7 +49,7 @@ public class FourCirlceRotate extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Log.i(TAG, "onDraw " + where);
+//        Log.i(TAG, "onDraw " + where);
         if (!init) {
             startAnimation();
 
@@ -151,7 +151,7 @@ public class FourCirlceRotate extends View {
     }
 
     private ValueAnimator getValueAnimator() {
-        Log.i(TAG, "getValueAnimator ");
+//        Log.i(TAG, "getValueAnimator ");
         ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, 8f);
         valueAnimator.setDuration(4000);
         valueAnimator.setInterpolator(new LinearInterpolator());

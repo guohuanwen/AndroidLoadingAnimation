@@ -27,7 +27,9 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"/>
             </RelativeLayout>
-
+            <com.bcgtgjyb.huanwen.customview.mylibrary.FiveLine
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
             <com.bcgtgjyb.huanwen.customview.mylibrary.WindowsLoad
                 android:id="@+id/windows_load"
                 android:layout_width="100dp"
@@ -41,6 +43,10 @@
             <com.bcgtgjyb.huanwen.customview.mylibrary.FourCirlceRotate
                 android:layout_width="100dp"
                 android:layout_height="100dp" />
+            <com.bcgtgjyb.huanwen.customview.mylibrary.PPTVLoading
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
+
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
