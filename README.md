@@ -1,7 +1,7 @@
 [![Android Gems](http://www.android-gems.com/badge/guohuanwen/TaiJIView.svg?branch=master)](http://www.android-gems.com/lib/guohuanwen/TaiJIView)
 
-# TaiJIView
-
+# AndroidLoadingAnimation
+[this is another loading project---AVLoadingIndicatorView](AndroidLoadingAnimation) 
 #Demo  
 
 ![](https://github.com/guohuanwen/TaiJIView/blob/master/screenshots/gif4.gif)  
