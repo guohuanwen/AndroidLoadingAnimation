@@ -4,7 +4,7 @@
 [this is another loading project---AVLoadingIndicatorView](AndroidLoadingAnimation) 
 #Demo  
 
-![](https://github.com/guohuanwen/TaiJIView/blob/master/screenshots/gif4.gif)  
+![](https://github.com/guohuanwen/AndroidLoadingAnimation/blob/master/screenshots/taiji1.gif)  
 
 
   
