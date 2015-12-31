@@ -7,11 +7,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.bcgtgjyb.huanwen.customview.mylibrary.FiveLine;
 import com.bcgtgjyb.huanwen.customview.mylibrary.TaiJiButton;
 
 public class MainActivity extends AppCompatActivity {
     private Button button;
     private TaiJiButton taiJiButton;
+    private FiveLine fiveLine1;
+    private FiveLine fiveLine2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +24,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init() {
-        taiJiButton=(TaiJiButton)findViewById(R.id.taiJiButton);
+        taiJiButton = (TaiJiButton) findViewById(R.id.taiJiButton);
+        fiveLine1 = (FiveLine) findViewById(R.id.fiveLine1);
+        fiveLine2 = (FiveLine) findViewById(R.id.fiveLine2);
+        fiveLine2.initLine(new float[]{0,0.2f,0.4f,0.6f,0.8f});
+
         taiJiButton.setVelocity(5000);
         taiJiButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,11 +38,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        button=(Button)findViewById(R.id.button);
+        button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(taiJiButton!=null){
+                if (taiJiButton != null) {
                     taiJiButton.stopLoad();
                 }
             }
