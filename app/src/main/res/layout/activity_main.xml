@@ -22,11 +22,18 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                    <com.bcgtgjyb.huanwen.customview.mylibrary.TaiJiButton
-                        android:id="@+id/taiJiButton"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_centerInParent="true" />
+                <com.bcgtgjyb.huanwen.customview.mylibrary.TaiJiButton
+                    android:id="@+id/taiJiButton"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerInParent="true" />
+
+                <com.bcgtgjyb.huanwen.customview.mylibrary.ManyCircle
+                    android:layout_width="100dp"
+                    android:layout_height="100dp" />
+                <com.bcgtgjyb.huanwen.customview.mylibrary.LoadingLine
+                    android:layout_width="100dp"
+                    android:layout_height="100dp" />
 
                 <com.bcgtgjyb.huanwen.customview.mylibrary.SquareLine
                     android:layout_width="100dp"
@@ -43,22 +50,24 @@
                     android:layout_height="100dp" />
 
 
-
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
                 <Button
                     android:id="@+id/button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="stop" />
+
                 <com.bcgtgjyb.huanwen.customview.mylibrary.FiveLine
                     android:id="@+id/fiveLine2"
                     android:layout_width="100dp"
                     android:layout_height="100dp" />
+
                 <com.bcgtgjyb.huanwen.customview.mylibrary.PointToLineRotate
                     android:layout_width="100dp"
                     android:layout_height="100dp" />
