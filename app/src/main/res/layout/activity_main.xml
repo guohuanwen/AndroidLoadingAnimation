@@ -28,6 +28,10 @@
                     android:layout_height="100dp"
                     android:layout_centerInParent="true" />
 
+                <com.bcgtgjyb.huanwen.customview.mylibrary.People
+                    android:layout_width="100dp"
+                    android:layout_height="100dp" />
+
                 <com.bcgtgjyb.huanwen.customview.mylibrary.ManyCircle
                     android:layout_width="100dp"
                     android:layout_height="100dp" />
@@ -44,10 +48,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp" />
 
-                <com.bcgtgjyb.huanwen.customview.mylibrary.WindowsLoad
-                    android:id="@+id/windows_load"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp" />
+
 
 
             </LinearLayout>
@@ -62,6 +63,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="stop" />
+
+                <com.bcgtgjyb.huanwen.customview.mylibrary.WindowsLoad
+                    android:id="@+id/windows_load"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp" />
 
                 <com.bcgtgjyb.huanwen.customview.mylibrary.FiveLine
                     android:id="@+id/fiveLine2"
