@@ -40,26 +40,31 @@ public class ManyCircle extends View {
 
     }
 
+    private int width;
+    private int height;
+    private float pi2;
+    private float r;
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (!init) {
             init = true;
             start();
+            width = getWidth() / 2;
+            height = getHeight() / 2;
+            pi2 = 2*(float)Math.PI;
+            r = width-maxRadius;
         }
-        int width = getWidth() / 2;
-        int height = getHeight() / 2;
-        float pi = 2*(float)Math.PI;
-        int r = (int) Math.sqrt(width * width + height * height)-40;
-        canvas.drawCircle((float) (width + r * Math.sin(0)), (float) (height + r * Math.cos(0)), f(radiu+0), paint);
-        canvas.drawCircle((float) (width + r * Math.sin(pi/8)), (float) (height + r * Math.cos(pi/8)), f(radiu+2), paint);
-        canvas.drawCircle((float) (width + r * Math.sin(pi/8*2)), (float) (height + r * Math.cos(pi/8*2)), f(radiu+4), paint);
-        canvas.drawCircle((float) (width + r * Math.sin(pi/8*3)), (float) (height + r * Math.cos(pi/8*3)), f(radiu+6), paint);
 
-        canvas.drawCircle((float) (width + r * Math.sin(pi/8*4)), (float) (height + r * Math.cos(pi/8*4)), f(radiu+8), paint);
-        canvas.drawCircle((float) (width + r * Math.sin(pi/8*5)), (float) (height + r * Math.cos(pi/8*5)), f(radiu+10), paint);
-        canvas.drawCircle((float) (width + r * Math.sin(pi/8*6)), (float) (height + r * Math.cos(pi/8*6)), f(radiu+12), paint);
-        canvas.drawCircle((float) (width + r * Math.sin(pi/8*7)), (float) (height + r * Math.cos(pi/8*7)), f(radiu+14), paint);
+        canvas.drawCircle((float) (width + r * Math.sin(0)), (float) (height + r * Math.cos(0)), f(radiu+0), paint);
+        canvas.drawCircle((float) (width + r * Math.sin(pi2 /8)), (float) (height + r * Math.cos(pi2 /8)), f(radiu+2), paint);
+        canvas.drawCircle((float) (width + r * Math.sin(pi2 /8*2)), (float) (height + r * Math.cos(pi2 /8*2)), f(radiu+4), paint);
+        canvas.drawCircle((float) (width + r * Math.sin(pi2 /8*3)), (float) (height + r * Math.cos(pi2 /8*3)), f(radiu+6), paint);
+
+        canvas.drawCircle((float) (width + r * Math.sin(pi2 /8*4)), (float) (height + r * Math.cos(pi2 /8*4)), f(radiu+8), paint);
+        canvas.drawCircle((float) (width + r * Math.sin(pi2 /8*5)), (float) (height + r * Math.cos(pi2 /8*5)), f(radiu+10), paint);
+        canvas.drawCircle((float) (width + r * Math.sin(pi2 /8*6)), (float) (height + r * Math.cos(pi2 /8*6)), f(radiu+12), paint);
+        canvas.drawCircle((float) (width + r * Math.sin(pi2 /8*7)), (float) (height + r * Math.cos(pi2 /8*7)), f(radiu+14), paint);
 
         if (valueAnimator.isRunning()) {
             radiu = (float) valueAnimator.getAnimatedValue();
