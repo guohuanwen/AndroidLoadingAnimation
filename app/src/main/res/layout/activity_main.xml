@@ -85,6 +85,9 @@
                 <com.bcgtgjyb.huanwen.customview.mylibrary.PPTVLoading
                     android:layout_width="100dp"
                     android:layout_height="100dp" />
+                <com.bcgtgjyb.huanwen.customview.mylibrary.Test
+                    android:layout_width="100dp"
+                    android:layout_height="100dp" />
 
             </LinearLayout>
         </LinearLayout>
