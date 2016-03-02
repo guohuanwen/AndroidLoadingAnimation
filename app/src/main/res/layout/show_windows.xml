@@ -3,5 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.bcgtgjyb.huanwen.customview.mylibrary.Loading58Path
+        android:layout_width="200dp"
+        android:layout_height="200dp" />
 
 </RelativeLayout>

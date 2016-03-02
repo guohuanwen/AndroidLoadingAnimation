@@ -14,4 +14,11 @@ public class BWValueAnimator {
         valueX.setDuration(time);
         return valueX;
     }
+
+    public static ValueAnimator getValueAnimator(float start,float end, int time){
+        ValueAnimator valueX = ValueAnimator.ofFloat(start,end);
+        valueX.setInterpolator(new LinearInterpolator());
+        valueX.setDuration(time);
+        return valueX;
+    }
 }

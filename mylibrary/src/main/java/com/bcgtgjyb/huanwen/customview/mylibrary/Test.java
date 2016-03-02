@@ -4,7 +4,10 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.bcgtgjyb.huanwen.customview.mylibrary.tool.BWCallback;
@@ -15,6 +18,7 @@ import com.nineoldandroids.animation.ValueAnimator;
  * Created by bigwen on 2016/3/1.
  */
 public class Test extends View {
+    private String TAG = Test.class.getName();
 
     public Test(Context context) {
         super(context);
@@ -26,11 +30,13 @@ public class Test extends View {
         init();
     }
 
+    private Path path;
     private void init(){
         move = new Move();
         returenMove = new Move();
         paint = new Paint();
         paint.setColor(Color.RED);
+        path = new Path();
     }
 
     @Override
@@ -74,11 +80,51 @@ public class Test extends View {
             canvas.drawCircle(ff[0], ff[1], 20, paint);
         }
 
+
+//        path.moveTo(w/2,h/2);
+//        path.quadTo(0, 0, w/2, 0);
+//        path.quadTo(w/2, 0, w / 2, h);
+//        path.quadTo(w / 2, h, 0, 0);
+        Paint paint1 = new Paint();
+        paint1.setColor(Color.BLUE);
+        paint1.setAntiAlias(false);
+        paint1.setStyle(Paint.Style.FILL);
+        path.reset();
+        path.moveTo(0, 0);
+        path.quadTo(xxx / 2, h / 2, xxx, 0);
+        path.lineTo(xxx, h);
+        path.quadTo(xxx/2, h/2, 0, h);
+        path.lineTo(0,0);
+        path.close();
+        canvas.drawPath(path,paint1);
+        canvas.translate(0, 60);
         if(move != null && move.isRunning()){
             invalidate();
         }
         if (returenMove != null && returenMove.isRunning()){
             invalidate();
         }
+    }
+
+
+    private float xxx = 100;
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        Log.i(TAG, "onTouchEvent: ");
+        int action = event.getAction();
+        switch (action){
+            case MotionEvent.ACTION_DOWN:
+                break;
+            case MotionEvent.ACTION_MOVE:
+                float  y = event.getX();
+                float rawy = event.getRawY();
+                Log.i(TAG, "onTouchEvent: "+y +"   "+rawy);
+                xxx = y;
+                invalidate();
+                break;
+            case MotionEvent.ACTION_UP:
+                break;
+        }
+        return true;
     }
 }
