@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 //        addView = (LinearLayout)findViewById(R.id.add);
 //        addView.addView(loading58);
-//        init();
+        init();
     }
 
     private void init() {
