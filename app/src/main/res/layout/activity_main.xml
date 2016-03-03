@@ -85,11 +85,13 @@
                 <com.bcgtgjyb.huanwen.customview.mylibrary.PPTVLoading
                     android:layout_width="100dp"
                     android:layout_height="100dp" />
-                <com.bcgtgjyb.huanwen.customview.mylibrary.Test
-                    android:layout_width="300dp"
-                    android:layout_height="300dp" />
 
             </LinearLayout>
+            <com.bcgtgjyb.huanwen.customview.mylibrary.Loding58View
+                android:id="@+id/add"
+                android:layout_width="100dp"
+                android:layout_height="match_parent">
+            </com.bcgtgjyb.huanwen.customview.mylibrary.Loding58View>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

@@ -1,7 +1,7 @@
 package com.bcgtgjyb.huanwen.customview.customview;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,11 +15,15 @@ public class MainActivity extends AppCompatActivity {
     private TaiJiButton taiJiButton;
     private FiveLine fiveLine1;
     private FiveLine fiveLine2;
-
+//    private Loding58View loading58;
+//    private LinearLayout addView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.show_windows);
+//        loading58 = new Loding58View(this);
+        setContentView(R.layout.activity_main);
+//        addView = (LinearLayout)findViewById(R.id.add);
+//        addView.addView(loading58);
 //        init();
     }
 
