@@ -77,7 +77,11 @@ public class PPTVLoading extends View {
     }
 
     public void start(){
-        valueAnimator=getValueAnimator();
+        if (valueAnimator == null) {
+            valueAnimator = getValueAnimator();
+        }else {
+            valueAnimator.start();
+        }
         if(stop==false){
             new Handler().postDelayed(new Runnable() {
                 @Override

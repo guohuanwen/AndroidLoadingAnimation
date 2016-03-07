@@ -65,7 +65,11 @@ public class SquareLine extends View {
     }
 
     private void start(){
-        valueA = getValueAnimator();
+        if (valueA == null) {
+            valueA = getValueAnimator();
+        }else {
+            valueA.start();
+        }
         invalidate();
         handler.postDelayed(new Runnable() {
             @Override

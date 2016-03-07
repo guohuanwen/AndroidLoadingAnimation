@@ -9,26 +9,24 @@ import android.graphics.RectF;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 
 /**
  * Created by guohuanwen on 2015/10/6.
  */
-public class PointToLineRotate extends View{
+public class PointToLineRotate extends View {
     private Paint paint;
-    private float pi=(float)Math.PI;
-    private float startAngle=0;
-    private float angle=0;
-    private float addAngle=0;
+    private float pi = (float) Math.PI;
+    private float startAngle = 0;
+    private float angle = 0;
+    private float addAngle = 0;
     private ValueAnimator endValue;
     private ValueAnimator startValue;
-    private int width=10;
+    private int width = 10;
+
     public PointToLineRotate(Context context, AttributeSet attrs) {
         super(context, attrs);
-        paint=new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         //画线
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(width);
@@ -38,51 +36,52 @@ public class PointToLineRotate extends View{
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        RectF rectF=new RectF();
+        RectF rectF = new RectF();
         rectF.set(width / 2, width / 2, getWidth() - width / 2, getHeight() - width / 2);
-        if(null==startValue){
+        if (null == startValue) {
             loading();
         }
-        angle=-(float)endValue.getAnimatedValue();
-        startAngle=(float)startValue.getAnimatedValue();
+        angle = -(float) endValue.getAnimatedValue();
+        startAngle = (float) startValue.getAnimatedValue();
         canvas.drawArc(rectF, startAngle, angle, false, paint);
 
-        if(endValue.isRunning()||startValue.isRunning()){
+        if (endValue.isRunning() || startValue.isRunning()) {
             invalidate();
         }
     }
 
-    private void loading(){
-        startValue=makeValueAnimator(0,360);
-        endValue=makeEndValueAnimator(30,60,120,90,60,30);
+    private void loading() {
+        startValue = makeValueAnimator(0, 360);
+        endValue = makeEndValueAnimator(30, 60, 120, 90, 60, 30);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 loading();
                 invalidate();
             }
-        },startValue.getDuration());
+        }, startValue.getDuration());
     }
 
 
-    private ValueAnimator makeValueAnimator(float...value){
-        ValueAnimator valueAnimator=ValueAnimator.ofFloat(value);
-        valueAnimator.setInterpolator(new LinearInterpolator());
-        valueAnimator.setDuration(1000);
-        valueAnimator.start();
-        return valueAnimator;
-    }
-    private ValueAnimator makeEndValueAnimator(float...value){
-        ValueAnimator valueAnimator=ValueAnimator.ofFloat(value);
+    private ValueAnimator makeValueAnimator(float... value) {
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(value);
         valueAnimator.setInterpolator(new LinearInterpolator());
         valueAnimator.setDuration(1000);
         valueAnimator.start();
         return valueAnimator;
     }
 
+    private ValueAnimator makeEndValueAnimator(float... value) {
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(value);
+        valueAnimator.setInterpolator(new LinearInterpolator());
+        valueAnimator.setDuration(1000);
+        valueAnimator.start();
+        return valueAnimator;
+    }
 
 
     private float circleR;
+
     private ValueAnimator makeCircleData(float[] startCoordinate, float[] RCoordinate, int delay) {
         float x1 = startCoordinate[0];
         float y1 = startCoordinate[1];

@@ -37,7 +37,9 @@ public class Loading58Path extends View {
     }
 
     private int runParam = -1;
-
+    private int ST = 0;
+    private int TC = 0;
+    private int CS = 0;
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -169,8 +171,14 @@ public class Loading58Path extends View {
     private void drawSquToTri() {
         squeToTri.reset();
         if (squeToTriVA == null) {
+            ST = 2;
             squeToTriVA = BWValueAnimator.getValueAnimator(0, w / 2, 500);
             squeToTriVA.start();
+        }else if (ST == 1){
+            ST = 2;
+            squeToTriVA.start();
+        }else {
+
         }
         if (squeToTriVA != null && squeToTriVA.isRunning()) {
             float value = (float) squeToTriVA.getAnimatedValue();
@@ -195,7 +203,6 @@ public class Loading58Path extends View {
             squeToTri.close();
             return;
         } else {
-//            squeToTriVA = null;
             return;
         }
     }
@@ -210,6 +217,12 @@ public class Loading58Path extends View {
         if (triToCirVA == null) {
             triToCirVA = BWValueAnimator.getValueAnimator(0, num, 500);
             triToCirVA.start();
+            TC = 2;
+        }else if (TC == 1){
+            triToCirVA.start();
+            TC = 2;
+        }else {
+
         }
         if (triToCirVA.isRunning()) {
             float param = (float) triToCirVA.getAnimatedValue();
@@ -265,6 +278,12 @@ public class Loading58Path extends View {
             float num = 0.45f * w;
             cirToSqueVA = BWValueAnimator.getValueAnimator(0.27f * w, num, 500);
             cirToSqueVA.start();
+            CS = 2;
+        }else if (CS ==1){
+            cirToSqueVA.start();
+            CS = 2;
+        }else {
+
         }
         if (cirToSqueVA.isRunning()) {
             float param = (float) cirToSqueVA.getAnimatedValue();
@@ -321,10 +340,13 @@ public class Loading58Path extends View {
         return param;
     }
 
-    private void clear() {
-        cirToSqueVA = null;
-        triToCirVA = null;
-        squeToTriVA = null;
+    public void clear() {
+//        squeToTriVA = null;
+        ST = 1;
+        TC = 1;
+        CS = 1;
+//        cirToSqueVA = null;
+//        triToCirVA = null;
     }
 
 }

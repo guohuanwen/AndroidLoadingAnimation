@@ -76,10 +76,14 @@ public class ManyCircle extends View {
 
 
     private void start() {
-        valueAnimator = ValueAnimator.ofFloat(0, maxRadius);
-        valueAnimator.setInterpolator(new LinearInterpolator());
-        valueAnimator.setDuration(1000);
-        valueAnimator.start();
+        if (valueAnimator == null) {
+            valueAnimator = ValueAnimator.ofFloat(0, maxRadius);
+            valueAnimator.setInterpolator(new LinearInterpolator());
+            valueAnimator.setDuration(1000);
+            valueAnimator.start();
+        }else {
+            valueAnimator.start();
+        }
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {

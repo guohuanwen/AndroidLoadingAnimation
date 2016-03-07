@@ -80,10 +80,14 @@ public class LoadingLine extends View {
     }
 
     private void start() {
-        valueAnimator = ValueAnimator.ofFloat(0, 100);
-        valueAnimator.setInterpolator(new LinearInterpolator());
-        valueAnimator.setDuration(6000);
-        valueAnimator.start();
+        if (valueAnimator == null) {
+            valueAnimator = ValueAnimator.ofFloat(0, 100);
+            valueAnimator.setInterpolator(new LinearInterpolator());
+            valueAnimator.setDuration(6000);
+            valueAnimator.start();
+        }else {
+            valueAnimator.start();
+        }
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {

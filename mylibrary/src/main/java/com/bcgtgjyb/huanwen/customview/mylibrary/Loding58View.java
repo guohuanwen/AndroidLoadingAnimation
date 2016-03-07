@@ -49,6 +49,7 @@ public class Loding58View extends LinearLayout {
         riseSet = riseVA(0, -100);
         rolation = rotation(90);
         aList.playTogether(riseSet, rolation);
+        aList.setDuration(500);
         aList.start();
         view.start();
         postDelayed(new Runnable() {
@@ -64,6 +65,7 @@ public class Loding58View extends LinearLayout {
                 riseSet = riseVA(0, -100);
                 rolation = rotation(120);
                 aList.playTogether(riseSet, rolation);
+                aList.setDuration(500);
                 aList.start();
             }
         }, 1500);
@@ -81,6 +83,7 @@ public class Loding58View extends LinearLayout {
                 riseSet = riseVA(0, -100);
                 rolation = rotation(90);
                 aList.playTogether(riseSet, rolation);
+                aList.setDuration(500);
                 aList.start();
             }
         }, 3000);

@@ -5,10 +5,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.RectF;
 import android.os.Handler;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
@@ -132,7 +130,11 @@ public class FourCirlceRotate extends View {
 
 
     public void startAnimation(){
-        valueAnimator = getValueAnimator();
+        if (valueAnimator == null) {
+            valueAnimator = getValueAnimator();
+        }else {
+            valueAnimator.start();
+        }
         R = getWidth() / 6;
         new Handler().postDelayed(new Runnable() {
             @Override
