@@ -40,6 +40,8 @@ public class Loading58Path extends View {
     private int ST = 0;
     private int TC = 0;
     private int CS = 0;
+
+    //  正->三角->保持三角->圆->保持圆->正->保持正->循环
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -174,10 +176,10 @@ public class Loading58Path extends View {
             ST = 2;
             squeToTriVA = BWValueAnimator.getValueAnimator(0, w / 2, 500);
             squeToTriVA.start();
-        }else if (ST == 1){
+        } else if (ST == 1) {
             ST = 2;
             squeToTriVA.start();
-        }else {
+        } else {
 
         }
         if (squeToTriVA != null && squeToTriVA.isRunning()) {
@@ -218,10 +220,10 @@ public class Loading58Path extends View {
             triToCirVA = BWValueAnimator.getValueAnimator(0, num, 500);
             triToCirVA.start();
             TC = 2;
-        }else if (TC == 1){
+        } else if (TC == 1) {
             triToCirVA.start();
             TC = 2;
-        }else {
+        } else {
 
         }
         if (triToCirVA.isRunning()) {
@@ -279,10 +281,10 @@ public class Loading58Path extends View {
             cirToSqueVA = BWValueAnimator.getValueAnimator(0.27f * w, num, 500);
             cirToSqueVA.start();
             CS = 2;
-        }else if (CS ==1){
+        } else if (CS == 1) {
             cirToSqueVA.start();
             CS = 2;
-        }else {
+        } else {
 
         }
         if (cirToSqueVA.isRunning()) {
@@ -341,12 +343,9 @@ public class Loading58Path extends View {
     }
 
     public void clear() {
-//        squeToTriVA = null;
         ST = 1;
         TC = 1;
         CS = 1;
-//        cirToSqueVA = null;
-//        triToCirVA = null;
     }
 
 }

@@ -6,7 +6,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -51,9 +50,17 @@ public class PointToLineRotate extends View {
     }
 
     private void loading() {
-        startValue = makeValueAnimator(0, 360);
-        endValue = makeEndValueAnimator(30, 60, 120, 90, 60, 30);
-        new Handler().postDelayed(new Runnable() {
+        if (startValue == null) {
+            startValue = makeValueAnimator(0, 360);
+        }else {
+            startValue.start();
+        }
+        if (endValue == null) {
+            endValue = makeEndValueAnimator(30, 60, 120, 90, 60, 30);
+        }else {
+            endValue.start();
+        }
+        postDelayed(new Runnable() {
             @Override
             public void run() {
                 loading();

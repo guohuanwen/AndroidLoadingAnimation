@@ -54,7 +54,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="visible"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -65,35 +65,7 @@
                     android:layout_height="wrap_content"
                     android:text="stop" />
 
-                <com.bcgtgjyb.huanwen.customview.mylibrary.WindowsLoad
-                    android:id="@+id/windows_load"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp" />
-
-                <com.bcgtgjyb.huanwen.customview.mylibrary.FiveLine
-                    android:id="@+id/fiveLine2"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp" />
-
-                <com.bcgtgjyb.huanwen.customview.mylibrary.PointToLineRotate
-                    android:layout_width="100dp"
-                    android:layout_height="100dp" />
-
-                <com.bcgtgjyb.huanwen.customview.mylibrary.FourCirlceRotate
-                    android:layout_width="100dp"
-                    android:layout_height="100dp" />
-
-                <com.bcgtgjyb.huanwen.customview.mylibrary.PPTVLoading
-                    android:layout_width="100dp"
-                    android:layout_height="100dp" />
-
-            </LinearLayout>
-            <com.bcgtgjyb.huanwen.customview.mylibrary.Loding58View
-                android:id="@+id/add"
-                android:visibility="visible"
-                android:layout_width="100dp"
-                android:layout_height="match_parent">
-            </com.bcgtgjyb.huanwen.customview.mylibrary.Loding58View>
+        </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

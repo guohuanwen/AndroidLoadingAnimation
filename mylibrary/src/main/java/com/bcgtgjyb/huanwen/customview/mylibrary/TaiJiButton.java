@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -34,7 +33,7 @@ public class TaiJiButton extends View {
     private float ratio = 0;
     private boolean stopAnimator = false;
     private float raduis = 0;
-    private int velocity = 500;
+    private int velocity = 1000;
     private int color1 = Color.BLACK;
     private int color2 = Color.GRAY;
     private float R = 0;
@@ -44,6 +43,7 @@ public class TaiJiButton extends View {
     private float raduisY2 = 0;
     private RectF rectF;
     private RectF rectF2;
+    private boolean loading = false;
 
 
     public TaiJiButton(Context context, AttributeSet attributeSet) {
@@ -62,6 +62,7 @@ public class TaiJiButton extends View {
      * set the animation start
      */
     public void startLoad() {
+        loading = true;
         stopAnimator = false;
         setLineToArcAnimator();
         setAppearAnimator();
@@ -72,9 +73,14 @@ public class TaiJiButton extends View {
      * set the animation stop
      */
     public void stopLoad() {
+        loading = false;
         this.stopAnimator = true;
         setArcToLineAnimator();
         setDisAppearAnimator();
+    }
+
+    public boolean isLoading(){
+        return loading;
     }
 
     /**
@@ -153,9 +159,13 @@ public class TaiJiButton extends View {
 
 
     private void loading() {
-        loadAnimator();
+        if (animator == null) {
+            loadAnimator();
+        }else {
+            animator.start();
+        }
         if (!stopAnimator) {
-            new Handler().postDelayed(new Runnable() {
+            postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     loading();

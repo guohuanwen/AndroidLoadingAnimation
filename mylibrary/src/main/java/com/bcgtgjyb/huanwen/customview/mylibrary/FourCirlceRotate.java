@@ -5,7 +5,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -24,7 +23,7 @@ public class FourCirlceRotate extends View {
     private int delay = 500;
     private boolean init = false;
     private float R = 0;
-    private boolean stop=false;
+    private boolean stop = false;
 
     private float where = 0;
     private boolean isStart = false;
@@ -66,14 +65,14 @@ public class FourCirlceRotate extends View {
             canvas.drawCircle(R, getHeight() - R, R, paint5);
         }
         //逐个消失
-        if(show>4) {
+        if (show > 4) {
             if (show <= 4) {
                 canvas.drawCircle(R, R, R, paint2);
             }
             if (show <= 5) {
                 canvas.drawCircle(getWidth() - R, R, R, paint3);
             }
-            if (show <=6) {
+            if (show <= 6) {
                 canvas.drawCircle(getWidth() - R, getHeight() - R, R, paint4);
             }
             if (show <= 7) {
@@ -115,7 +114,6 @@ public class FourCirlceRotate extends View {
         }
 
 
-
         if (isStart) {
             where = (float) valueAnimator.getAnimatedValue();
         }
@@ -128,28 +126,27 @@ public class FourCirlceRotate extends View {
     }
 
 
-
-    public void startAnimation(){
+    public void startAnimation() {
         if (valueAnimator == null) {
             valueAnimator = getValueAnimator();
-        }else {
+        } else {
             valueAnimator.start();
         }
         R = getWidth() / 6;
-        new Handler().postDelayed(new Runnable() {
+        postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(!stop) {
+                if (!stop) {
                     startAnimation();
                     invalidate();
                 }
             }
-        },valueAnimator.getDuration());
+        }, valueAnimator.getDuration());
         init = true;
     }
 
-    public void stop(){
-        this.stop=true;
+    public void stop() {
+        this.stop = true;
     }
 
     private ValueAnimator getValueAnimator() {

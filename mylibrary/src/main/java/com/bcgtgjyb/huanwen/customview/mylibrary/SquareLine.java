@@ -4,8 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -19,7 +17,6 @@ public class SquareLine extends View {
     private Context mContext;
     private Paint paint;
     private ValueAnimator valueA;
-    private Handler handler;
     private int delayTime=500;
     private boolean initView = false;
 
@@ -36,7 +33,6 @@ public class SquareLine extends View {
     }
 
     private void init() {
-        handler = new Handler(Looper.getMainLooper());
         paint = new Paint();
         paint.setColor(Color.parseColor("#259b24"));
         paint.setStrokeWidth(10);
@@ -71,7 +67,7 @@ public class SquareLine extends View {
             valueA.start();
         }
         invalidate();
-        handler.postDelayed(new Runnable() {
+        postDelayed(new Runnable() {
             @Override
             public void run() {
                 start();
@@ -88,7 +84,6 @@ public class SquareLine extends View {
         invalidate();
         return valueAnimator;
     }
-
 
     private float yValue(float x, int length) {
         float s = length / getMeasuredWidth();

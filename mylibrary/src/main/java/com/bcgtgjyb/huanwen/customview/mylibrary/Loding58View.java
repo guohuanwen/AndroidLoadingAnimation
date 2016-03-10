@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 import com.nineoldandroids.animation.AnimatorSet;
 import com.nineoldandroids.animation.ObjectAnimator;
 import com.nineoldandroids.animation.PropertyValuesHolder;
-import com.nineoldandroids.animation.ValueAnimator;
 
 /**
  * Created by bigwen on 2016/3/2.
@@ -42,56 +41,83 @@ public class Loding58View extends LinearLayout {
         start();
     }
 
-    private AnimatorSet rolation;
-    private AnimatorSet aList = new AnimatorSet();
-
+    private AnimatorSet rolation90,rolation120,rolation180;
+    private AnimatorSet aList1,aList2,aList3,aList4;
     private void start() {
-        riseSet = riseVA(0, -100);
-        rolation = rotation(90);
-        aList.playTogether(riseSet, rolation);
-        aList.setDuration(500);
-        aList.start();
+        if (aList1 == null) {
+            aList1 = new AnimatorSet();
+            riseSet = riseVA(0, -100);
+            rolation90 = rotation(90);
+            aList1.playTogether(riseSet, rolation90);
+            aList1.setDuration(500);
+            aList1.start();
+        }else {
+            aList1.start();
+        }
         view.start();
+
         postDelayed(new Runnable() {
             @Override
             public void run() {
-                dropSet = dropVA(0, 100);
+                if (dropSet == null) {
+                    dropSet = dropVA(0, 100);
+                }else {
+                    dropSet.start();
+                }
             }
         }, 500);
 
         postDelayed(new Runnable() {
             @Override
             public void run() {
-                riseSet = riseVA(0, -100);
-                rolation = rotation(120);
-                aList.playTogether(riseSet, rolation);
-                aList.setDuration(500);
-                aList.start();
+                if (aList2 == null) {
+                    aList2 = new AnimatorSet();
+                    riseSet = riseVA(0, -100);
+                    rolation120 = rotation(120);
+                    aList2.playTogether(riseSet, rolation120);
+                    aList2.setDuration(500);
+                    aList2.start();
+                }else {
+                    aList2.start();
+                }
             }
         }, 1500);
 
         postDelayed(new Runnable() {
             @Override
             public void run() {
-                dropSet = dropVA(0, 100);
+                if (dropSet == null) {
+                    dropSet = dropVA(0, 100);
+                }else {
+                    dropSet.start();
+                }
             }
         }, 2000);
 
         postDelayed(new Runnable() {
             @Override
             public void run() {
-                riseSet = riseVA(0, -100);
-                rolation = rotation(90);
-                aList.playTogether(riseSet, rolation);
-                aList.setDuration(500);
-                aList.start();
+                if (aList3 == null) {
+                    aList3 = new AnimatorSet();
+                    riseSet = riseVA(0, -100);
+                    rolation180 = rotation(180);
+                    aList3.playTogether(riseSet, rolation90);
+                    aList3.setDuration(500);
+                    aList3.start();
+                }else {
+                    aList3.start();
+                }
             }
         }, 3000);
 
         postDelayed(new Runnable() {
             @Override
             public void run() {
-                dropSet = dropVA(0, 100);
+                if (dropSet == null) {
+                    dropSet = dropVA(0, 100);
+                }else {
+                    dropSet.start();
+                }
             }
         }, 3500);
 
@@ -103,11 +129,6 @@ public class Loding58View extends LinearLayout {
         }, 4500);
 
     }
-
-    private int startX;
-    private int startY;
-
-    private ValueAnimator valueRise;
 
     private AnimatorSet riseVA(float x, float y) {
         AnimatorSet animatorSet = new AnimatorSet();

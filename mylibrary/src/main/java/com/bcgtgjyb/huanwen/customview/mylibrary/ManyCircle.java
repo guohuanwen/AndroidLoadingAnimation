@@ -5,8 +5,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -18,7 +16,6 @@ public class ManyCircle extends View {
     private Paint paint;
     private int maxRadius = 16;
     private ValueAnimator valueAnimator;
-    private Handler handler;
     private boolean init = false;
     private float radiu = 10;
 
@@ -35,9 +32,6 @@ public class ManyCircle extends View {
     private void init() {
         paint = new Paint();
         paint.setColor(Color.RED);
-        handler = new Handler(Looper.getMainLooper());
-
-
     }
 
     private int width;
@@ -84,7 +78,7 @@ public class ManyCircle extends View {
         }else {
             valueAnimator.start();
         }
-        handler.postDelayed(new Runnable() {
+        postDelayed(new Runnable() {
             @Override
             public void run() {
                 start();

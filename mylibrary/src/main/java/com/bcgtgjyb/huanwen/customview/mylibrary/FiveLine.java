@@ -21,7 +21,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -60,10 +59,8 @@ public class FiveLine extends View {
             height = getHeight();
             init = true;
             start();
-
         }
         numb = (float) valueAnimator.getAnimatedValue();
-
         //三
         canvas.drawLine(width / 2, 0f + fx(numb + initLine[2]) * width, width / 2, height - fx(numb) * width, paint);
         //二
@@ -97,11 +94,11 @@ public class FiveLine extends View {
     public void start() {
         if (valueAnimator == null) {
             valueAnimator = getValueAnimator();
-        }else {
+        } else {
             valueAnimator.start();
         }
         if (stop == false) {
-            new Handler().postDelayed(new Runnable() {
+            postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     start();
