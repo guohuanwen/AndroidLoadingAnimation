@@ -1,7 +1,6 @@
 [![Android Gems](http://www.android-gems.com/badge/guohuanwen/TaiJIView.svg?branch=master)](http://www.android-gems.com/lib/guohuanwen/TaiJIView)
 
 # AndroidLoadingAnimation
-低仿58加载动画，时间比较紧，时间调度不是很好，有时间再修改吧
 #Demo  
 
 ![](https://github.com/guohuanwen/AndroidLoadingAnimation/blob/master/screenshots/taiji1.gif)  
