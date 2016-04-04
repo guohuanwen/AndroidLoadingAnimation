@@ -53,48 +53,50 @@ public class Loading58Path extends View {
             if (squeToTriVA != null && squeToTriVA.isRunning()) {
                 invalidate();
             } else {
-                runParam = 3;
-                postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        runParam = 1;
-                        invalidate();
-                    }
-                }, 1000);
+                runParam = 1;
                 invalidate();
+//                postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        runParam = 1;
+//                        invalidate();
+//                    }
+//                }, 1000);
+//                invalidate();
             }
         }
 
-        if (runParam == 3) {
+        if (runParam == 1) {
             drawPathTriangle();
             canvas.drawPath(pathTri, paint);
         }
 
-        if (runParam == 1) {
+        if (runParam == 2) {
             paint.setColor(Color.BLUE);
             drawTriToCir();
             canvas.drawPath(triToCir, paint);
             if (triToCirVA != null && triToCirVA.isRunning()) {
                 invalidate();
             } else {
-                runParam = 4;
-                postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        runParam = 2;
-                        invalidate();
-                    }
-                }, 1000);
+                runParam = 3;
                 invalidate();
+//                postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        runParam = 2;
+//                        invalidate();
+//                    }
+//                }, 1000);
+//                invalidate();
             }
         }
 
-        if (runParam == 4) {
+        if (runParam == 3) {
             drawPathCir();
             canvas.drawPath(pathCir, paint);
         }
 
-        if (runParam == 2) {
+        if (runParam == 4) {
             paint.setColor(Color.GREEN);
             drawCirToSque();
             canvas.drawPath(cirToSque, paint);
@@ -102,15 +104,16 @@ public class Loading58Path extends View {
                 invalidate();
             } else {
                 runParam = 5;
-                postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        runParam = 0;
-                        clear();
-                        invalidate();
-                    }
-                }, 1000);
                 invalidate();
+//                postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        runParam = 0;
+//                        clear();
+//                        invalidate();
+//                    }
+//                }, 1000);
+//                invalidate();
             }
         }
 
@@ -126,6 +129,16 @@ public class Loading58Path extends View {
             runParam = 0;
             invalidate();
         }
+    }
+
+    public void nextPath() {
+        Log.i(TAG, "nextPath: "+runParam);
+        runParam ++;
+        if (runParam == 6){
+            runParam = 0;
+            clear();
+        }
+        invalidate();
     }
 
     private void initWH(int width, int height) {

@@ -47,7 +47,7 @@ public class Loding58View extends LinearLayout {
         if (aList1 == null) {
             aList1 = new AnimatorSet();
             riseSet = riseVA(0, -100);
-            rolation90 = rotation(90);
+            rolation90 = rotation(240);
             aList1.playTogether(riseSet, rolation90);
             aList1.setDuration(500);
             aList1.start();
@@ -64,6 +64,7 @@ public class Loding58View extends LinearLayout {
                 }else {
                     dropSet.start();
                 }
+                view.nextPath();
             }
         }, 500);
 
@@ -73,7 +74,7 @@ public class Loding58View extends LinearLayout {
                 if (aList2 == null) {
                     aList2 = new AnimatorSet();
                     riseSet = riseVA(0, -100);
-                    rolation120 = rotation(120);
+                    rolation120 = rotation(90);
                     aList2.playTogether(riseSet, rolation120);
                     aList2.setDuration(500);
                     aList2.start();
@@ -91,6 +92,7 @@ public class Loding58View extends LinearLayout {
                 }else {
                     dropSet.start();
                 }
+                view.nextPath();
             }
         }, 2000);
 
@@ -101,7 +103,7 @@ public class Loding58View extends LinearLayout {
                     aList3 = new AnimatorSet();
                     riseSet = riseVA(0, -100);
                     rolation180 = rotation(180);
-                    aList3.playTogether(riseSet, rolation90);
+                    aList3.playTogether(riseSet, rolation180);
                     aList3.setDuration(500);
                     aList3.start();
                 }else {
@@ -118,6 +120,7 @@ public class Loding58View extends LinearLayout {
                 }else {
                     dropSet.start();
                 }
+                view.nextPath();
             }
         }, 3500);
 
