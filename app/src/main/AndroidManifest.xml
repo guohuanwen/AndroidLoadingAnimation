@@ -15,8 +15,5 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ShowWindowsLoad">
-
-        </activity>
     </application>
 </manifest>

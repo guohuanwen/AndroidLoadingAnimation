@@ -154,9 +154,7 @@ public class TaiJiButton extends View {
             raduis = (float) smallAnimator.getAnimatedValue();
             invalidate();
         }
-//
     }
-
 
     private void loading() {
         if (animator == null) {

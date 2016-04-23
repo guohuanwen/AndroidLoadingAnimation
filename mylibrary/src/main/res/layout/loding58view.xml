@@ -2,12 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <com.bcgtgjyb.huanwen.customview.mylibrary.Loading58Path
+    <com.bcgtgjyb.huanwen.customview.mylibrary.view58.Loading58Path
         android:id="@+id/loading58"
         android:orientation="horizontal"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp"
+        android:layout_marginTop="60dp"
         android:layout_width="30dp"
         android:layout_height="30dp" />
 </RelativeLayout>

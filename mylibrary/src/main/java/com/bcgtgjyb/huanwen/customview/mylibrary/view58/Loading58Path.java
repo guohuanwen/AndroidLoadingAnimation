@@ -1,4 +1,4 @@
-package com.bcgtgjyb.huanwen.customview.mylibrary;
+package com.bcgtgjyb.huanwen.customview.mylibrary.view58;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -8,6 +8,7 @@ import android.graphics.Path;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 
 import com.bcgtgjyb.huanwen.customview.mylibrary.tool.BWValueAnimator;
 import com.nineoldandroids.animation.ValueAnimator;
@@ -26,14 +27,16 @@ public class Loading58Path extends View {
         init();
     }
 
-    private void init() {
-        paint = new Paint();
-        paint.setColor(Color.RED);
-    }
 
     public Loading58Path(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
+    }
+
+    private void init() {
+        paint = new Paint();
+        paint.setColor(Color.RED);
+        initColorChange();
     }
 
     private int runParam = -1;
@@ -47,7 +50,12 @@ public class Loading58Path extends View {
         super.onDraw(canvas);
         initWH(getWidth(), getHeight());
         if (runParam == 0) {
-            paint.setColor(Color.RED);
+            if (colorVA != null && colorVA.isRunning()){
+                int d = (Integer)colorVA.getAnimatedValue();
+                paint.setARGB(255,255-d,d,0);
+            }else {
+                colorVA.start();
+            }
             drawSquToTri();
             canvas.drawPath(squeToTri, paint);
             if (squeToTriVA != null && squeToTriVA.isRunning()) {
@@ -55,14 +63,6 @@ public class Loading58Path extends View {
             } else {
                 runParam = 1;
                 invalidate();
-//                postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        runParam = 1;
-//                        invalidate();
-//                    }
-//                }, 1000);
-//                invalidate();
             }
         }
 
@@ -72,7 +72,12 @@ public class Loading58Path extends View {
         }
 
         if (runParam == 2) {
-            paint.setColor(Color.BLUE);
+            if (colorVA != null && colorVA.isRunning()){
+                int d = (Integer)colorVA.getAnimatedValue();
+                paint.setARGB(255,0,255-d,d);
+            }else {
+                colorVA.start();
+            }
             drawTriToCir();
             canvas.drawPath(triToCir, paint);
             if (triToCirVA != null && triToCirVA.isRunning()) {
@@ -80,14 +85,6 @@ public class Loading58Path extends View {
             } else {
                 runParam = 3;
                 invalidate();
-//                postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        runParam = 2;
-//                        invalidate();
-//                    }
-//                }, 1000);
-//                invalidate();
             }
         }
 
@@ -97,7 +94,12 @@ public class Loading58Path extends View {
         }
 
         if (runParam == 4) {
-            paint.setColor(Color.GREEN);
+            if (colorVA != null && colorVA.isRunning()){
+                int d = (Integer)colorVA.getAnimatedValue();
+                paint.setARGB(255,d,0,255-d);
+            }else {
+                colorVA.start();
+            }
             drawCirToSque();
             canvas.drawPath(cirToSque, paint);
             if (cirToSqueVA.isRunning()) {
@@ -105,15 +107,6 @@ public class Loading58Path extends View {
             } else {
                 runParam = 5;
                 invalidate();
-//                postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        runParam = 0;
-//                        clear();
-//                        invalidate();
-//                    }
-//                }, 1000);
-//                invalidate();
             }
         }
 
@@ -129,6 +122,11 @@ public class Loading58Path extends View {
             runParam = 0;
             invalidate();
         }
+    }
+
+    public void stop(){
+        runParam = -1;
+        clear();
     }
 
     public void nextPath() {
@@ -359,6 +357,13 @@ public class Loading58Path extends View {
         ST = 1;
         TC = 1;
         CS = 1;
+    }
+
+    private ValueAnimator colorVA;
+    private void initColorChange(){
+        colorVA = ValueAnimator.ofInt(0,255);
+        colorVA.setDuration(500);
+        colorVA.setInterpolator(new LinearInterpolator());
     }
 
 }
