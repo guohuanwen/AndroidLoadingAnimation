@@ -10,6 +10,7 @@ import com.bcgtgjyb.huanwen.customview.mylibrary.TaiJiButton;
 public class MainActivity extends AppCompatActivity {
     private Button button;
     private TaiJiButton taiJiButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

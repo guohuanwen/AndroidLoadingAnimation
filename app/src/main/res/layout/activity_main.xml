@@ -66,11 +66,6 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp" />
 
-                <com.bcgtgjyb.huanwen.customview.mylibrary.FiveLine
-                    android:id="@+id/fiveLine2"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp" />
-
                 <com.bcgtgjyb.huanwen.customview.mylibrary.PointToLineRotate
                     android:layout_width="100dp"
                     android:layout_height="100dp" />
@@ -85,6 +80,7 @@
 
             </LinearLayout>
             <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <com.bcgtgjyb.huanwen.customview.mylibrary.view58.Loding58View
