@@ -21,12 +21,27 @@ public class Loading58Path extends View {
     private int h = 0;
     private Paint paint;
     private String TAG = Loading58Path.class.getName();
+    private Path pathTri = new Path();
+    private static final float SQRT3 = 1.7f;
+    private static final float SQRT2 = 1.414f;
+    private int runParam = -1;
+    private int ST = 0;
+    private int TC = 0;
+    private int CS = 0;
+    private Path pathSqure = new Path();
+    private ValueAnimator colorVA;
+    private Path cirToSque = new Path();
+    private ValueAnimator cirToSqueVA;
+    private Path triToCir = new Path();
+    private ValueAnimator triToCirVA;
+    private Path squeToTri = new Path();
+    private ValueAnimator squeToTriVA = null;
+    private Path pathCir = new Path();
 
     public Loading58Path(Context context) {
         super(context);
         init();
     }
-
 
     public Loading58Path(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -39,21 +54,16 @@ public class Loading58Path extends View {
         initColorChange();
     }
 
-    private int runParam = -1;
-    private int ST = 0;
-    private int TC = 0;
-    private int CS = 0;
-
     //  正->三角->保持三角->圆->保持圆->正->保持正->循环
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         initWH(getWidth(), getHeight());
         if (runParam == 0) {
-            if (colorVA != null && colorVA.isRunning()){
-                int d = (Integer)colorVA.getAnimatedValue();
-                paint.setARGB(255,255-d,d,0);
-            }else {
+            if (colorVA != null && colorVA.isRunning()) {
+                int d = (Integer) colorVA.getAnimatedValue();
+                paint.setARGB(255, 255 - d, d, 0);
+            } else {
                 colorVA.start();
             }
             drawSquToTri();
@@ -72,10 +82,10 @@ public class Loading58Path extends View {
         }
 
         if (runParam == 2) {
-            if (colorVA != null && colorVA.isRunning()){
-                int d = (Integer)colorVA.getAnimatedValue();
-                paint.setARGB(255,0,255-d,d);
-            }else {
+            if (colorVA != null && colorVA.isRunning()) {
+                int d = (Integer) colorVA.getAnimatedValue();
+                paint.setARGB(255, 0, 255 - d, d);
+            } else {
                 colorVA.start();
             }
             drawTriToCir();
@@ -94,10 +104,10 @@ public class Loading58Path extends View {
         }
 
         if (runParam == 4) {
-            if (colorVA != null && colorVA.isRunning()){
-                int d = (Integer)colorVA.getAnimatedValue();
-                paint.setARGB(255,d,0,255-d);
-            }else {
+            if (colorVA != null && colorVA.isRunning()) {
+                int d = (Integer) colorVA.getAnimatedValue();
+                paint.setARGB(255, d, 0, 255 - d);
+            } else {
                 colorVA.start();
             }
             drawCirToSque();
@@ -114,7 +124,6 @@ public class Loading58Path extends View {
             drawPathSqure();
             canvas.drawPath(pathSqure, paint);
         }
-
     }
 
     public void start() {
@@ -124,15 +133,15 @@ public class Loading58Path extends View {
         }
     }
 
-    public void stop(){
+    public void stop() {
         runParam = -1;
         clear();
     }
 
     public void nextPath() {
-        Log.i(TAG, "nextPath: "+runParam);
-        runParam ++;
-        if (runParam == 6){
+        Log.i(TAG, "nextPath: " + runParam);
+        runParam++;
+        if (runParam == 6) {
             runParam = 0;
             clear();
         }
@@ -144,10 +153,6 @@ public class Loading58Path extends View {
         this.h = height;
     }
 
-    private Path pathTri = new Path();
-    private static final float SQRT3 = 1.7f;
-    private static final float SQRT2 = 1.414f;
-
     private void drawPathTriangle() {
         Log.i(TAG, "drawPathTriangle: ");
         pathTri.reset();
@@ -157,8 +162,6 @@ public class Loading58Path extends View {
         pathTri.lineTo(w / 2, 0);
         pathTri.close();
     }
-
-    private Path pathSqure = new Path();
 
     private void drawPathSqure() {
         Log.i(TAG, "drawPathSqure: ");
@@ -170,16 +173,12 @@ public class Loading58Path extends View {
         pathSqure.close();
     }
 
-    private Path pathCir = new Path();
 
     private void drawPathCir() {
         Log.i(TAG, "drawPathCir: ");
         pathCir.reset();
         pathCir.addCircle(w / 2, h / 2, h / 2, Path.Direction.CCW);
     }
-
-    private Path squeToTri = new Path();
-    private ValueAnimator squeToTriVA = null;
 
     private void drawSquToTri() {
         squeToTri.reset();
@@ -219,9 +218,6 @@ public class Loading58Path extends View {
             return;
         }
     }
-
-    private Path triToCir = new Path();
-    private ValueAnimator triToCirVA;
 
     private void drawTriToCir() {
         triToCir.reset();
@@ -281,9 +277,6 @@ public class Loading58Path extends View {
         point[1] = -SQRT3 / 3 * x + (0.5f + SQRT3 / 6) * h;
         return point;
     }
-
-    private Path cirToSque = new Path();
-    private ValueAnimator cirToSqueVA;
 
     private void drawCirToSque() {
         cirToSque.reset();
@@ -359,9 +352,8 @@ public class Loading58Path extends View {
         CS = 1;
     }
 
-    private ValueAnimator colorVA;
-    private void initColorChange(){
-        colorVA = ValueAnimator.ofInt(0,255);
+    private void initColorChange() {
+        colorVA = ValueAnimator.ofInt(0, 255);
         colorVA.setDuration(500);
         colorVA.setInterpolator(new LinearInterpolator());
     }

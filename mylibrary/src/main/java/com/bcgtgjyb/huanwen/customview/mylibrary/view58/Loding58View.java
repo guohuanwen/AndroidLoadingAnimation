@@ -27,6 +27,11 @@ public class Loding58View extends LinearLayout {
     private boolean play = false;
     private AnimatorSet riseSet;
     private AnimatorSet dropSet;
+    private AnimatorSet rolation90, rolation120, rolation180;
+    private AnimatorSet aList1, aList2, aList3, aList4;
+    private int duration = 600;
+    private long time = 0;
+    private AnimatorSet riseSet1, riseSet2, riseSet3, dropSet1, dropSet2, dropSet3, dropSet4;
 
     public Loding58View(Context context) {
         super(context);
@@ -47,11 +52,6 @@ public class Loding58View extends LinearLayout {
 
         initAnimList();
     }
-
-    private AnimatorSet rolation90, rolation120, rolation180;
-    private AnimatorSet aList1, aList2, aList3, aList4;
-    private int duration = 600;
-    private long time = 0;
 
     private void animStart() {
         aList1.start();
@@ -106,61 +106,7 @@ public class Loding58View extends LinearLayout {
                 }
             }
         });
-
-
-//        postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                view.nextPath();
-//                dropSet.start();
-//            }
-//        }, duration);
-//
-//        postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                aList2.start();
-//
-//            }
-//        }, duration * 2);
-//
-//        postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                view.nextPath();
-//                dropSet.start();
-//            }
-//        }, duration * 3);
-//
-//        postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                aList3.start();
-//            }
-//        }, duration * 4);
-//
-//        postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                view.nextPath();
-//                dropSet.start();
-//            }
-//        }, duration * 5);
-//
-//        Log.i(TAG, "animStart:  play =" + play);
-//        if (play) {
-//            Log.i(TAG, "animStart: ");
-//            postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    animStart();
-//                }
-//            }, duration * 6);
-//        }
-
     }
-
-    private AnimatorSet riseSet1, riseSet2, riseSet3, dropSet1, dropSet2, dropSet3, dropSet4;
 
     private void initAnimList() {
         dropSet = dropVA(0, dropHeight);

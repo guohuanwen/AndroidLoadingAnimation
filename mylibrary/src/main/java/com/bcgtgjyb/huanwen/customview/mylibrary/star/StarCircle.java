@@ -2,7 +2,6 @@ package com.bcgtgjyb.huanwen.customview.mylibrary.star;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
@@ -21,8 +20,12 @@ public class StarCircle extends LinearLayout {
     private int viewHeight;
     private Thread thread;
     private boolean play = false;
-    private int degree = 0;
+    private float degree = 0;
     private String TAG = StarCircle.class.getName();
+    private int padding;
+    private double circleDegree;
+    private int circleX, circleY, circleR;
+    private int[] coordinate1, coordinate2;
 
     public StarCircle(Context context) {
         super(context);
@@ -40,25 +43,29 @@ public class StarCircle extends LinearLayout {
         LayoutInflater.from(mContext).inflate(R.layout.star_circle, this);
         starView1 = (StarView) findViewById(R.id.star_view_1);
         starView2 = (StarView) findViewById(R.id.star_view_2);
+        padding = ScreenUtil.dip2px(mContext, 8);
         initThread();
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        viewWidth = getWidth()- ScreenUtil.dip2px(mContext,30);
-        viewHeight = getHeight()- ScreenUtil.dip2px(mContext,30);
+        viewWidth = getWidth() - ScreenUtil.dip2px(mContext, 30);
+        viewHeight = getHeight() - ScreenUtil.dip2px(mContext, 30);
     }
 
     private void initThread() {
+        if (thread != null && thread.isAlive()) {
+            return;
+        }
         thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 while (play) {
-                    degree += 1f;
+                    degree += 0.1f;
                     setXy(degree);
                     try {
-                        Thread.sleep(30);
+                        Thread.sleep(16);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -66,33 +73,32 @@ public class StarCircle extends LinearLayout {
                 }
             }
         });
+        play = true;
+        thread.start();
     }
 
-    private void setXy(int d) {
-        final int[] s1 = caculateDegree(d);
-        final int[] s2 = caculateDegree(d);
+    private void setXy(float d) {
+        coordinate1 = caculateDegree(d);
+        coordinate2 = caculateDegree(d);
         post(new Runnable() {
             @Override
             public void run() {
-                starView1.setTranslationX(s1[0]);
-                starView1.setTranslationY(s1[1]);
-                starView2.setTranslationX(s2[0]);
-                starView2.setTranslationY(s2[1]);
+                starView1.setTranslationX(coordinate1[0]);
+                starView1.setTranslationY(coordinate1[1]);
+                starView2.setTranslationX(coordinate2[0]);
+                starView2.setTranslationY(coordinate2[1]);
             }
         });
-//        starView2.setDegree(d);
-//        starView1.setDegree(d);
     }
 
-    private int[] caculateDegree(int d) {
-        double dd = d/Math.PI;
-        int cX = viewWidth / 2;
-        int cY = viewHeight / 2;
-        int r = viewWidth / 2;
+    private int[] caculateDegree(float d) {
+        circleDegree = d / Math.PI;
+        circleX = viewWidth / 2 - padding;
+        circleY = viewHeight / 2 - padding;
+        circleR = viewWidth / 2;
         int[] xy = new int[2];
-        xy[0] = (int) (cX + r * Math.cos(dd));
-        xy[1] = (int) (cY + r * Math.sin(dd));
-        Log.i(TAG, "caculateDegree: "+xy[0]+"  "+xy[1]);
+        xy[0] = (int) (circleX + circleR * Math.cos(circleDegree));
+        xy[1] = (int) (circleY + circleR * Math.sin(circleDegree));
         return xy;
     }
 
@@ -111,7 +117,7 @@ public class StarCircle extends LinearLayout {
 
     public void start() {
         play = true;
-        thread.start();
+        initThread();
     }
 
     public void stop() {

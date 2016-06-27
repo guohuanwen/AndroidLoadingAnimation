@@ -89,6 +89,10 @@
                     android:layout_width="100dp"
                     android:layout_height="140dp">
                 </com.bcgtgjyb.huanwen.customview.mylibrary.view58.Loding58View>
+                <com.bcgtgjyb.huanwen.customview.mylibrary.star.StarCircle
+                    android:layout_width="100dp"
+                    android:layout_height="100dp">
+                </com.bcgtgjyb.huanwen.customview.mylibrary.star.StarCircle>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
